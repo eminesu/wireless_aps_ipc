@@ -2,15 +2,19 @@
 
 To enable the usage of the wifi library, run:
 
-"pip install wifi"
+```pip install wifi```
 
-You can directly run the program from the console by executing:
+You can directly run the program from the console by executing below where the file is located:
 
-"python main.py"
+```python main.py```
 
-where the file is located
+OR 
 
-If command gives an error regarding wlan0 not being available for scanning, try running 'ip link show' to see the original interface's name.
+```python3 main.py```
+
+depending on the version you use.
+
+If command gives an error regarding wlan0 not being available for scanning, try running 'ip link show' on the terminal to see the original interface's name on your computer.
 
 Then you can change the 'wlan0' keyword in line 11 in get_wireless_APs.py to the interface name you got from the terminal.
 
