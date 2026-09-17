@@ -1,21 +1,42 @@
 # wireless_aps_ipc
 
-To enable the usage of the wifi library, run:
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Platform](https://img.shields.io/badge/platform-Linux-333?style=flat&logo=linux&logoColor=white)
 
-```pip install wifi```
+Scan nearby **wireless access points** and report changes in real time — a small Python demo of
+**multiprocessing** and **inter-process communication (IPC)**. One process periodically scans the
+Wi-Fi cells (SSID, SNR, channel); a second process prints the changes it receives over a
+multiprocessing `Queue` — access points added or removed, and SNR or channel changes.
 
-You can directly run the program from the console by executing below where the file is located:
+> 🗂️ **One of my earlier learning projects — original, authored-by-hand code, written in
+> September 2022 and preserved here exactly as originally written** (no later changes to the
+> source). Linux-only, as it relies on the `wifi` library.
 
-```python main.py```
+## How it works
 
-OR 
+- `get_wireless_APs.py` — scans wireless cells with the `wifi` library and writes them to JSON.
+- `main.py` — runs two processes: one re-scans on a loop, the other prints detected changes
+  received through the IPC queue.
 
-```python3 main.py```
+## Requirements
 
-depending on the version you use.
+```bash
+pip install wifi
+```
 
-If command gives an error regarding wlan0 not being available for scanning, try running 'ip link show' on the terminal to see the original interface's name on your computer.
+## Usage
 
-Then you can change the 'wlan0' keyword in line 11 in get_wireless_APs.py to the interface name you got from the terminal.
+Run from the folder where the files are located:
 
-PS: The reason why I could not embed the instructions in the previous line to the code is that I could not run the commands regarding the status of wireless networks on my Windows 10 OS even though I used WSL.
+```bash
+python main.py
+# or, depending on your Python version:
+python3 main.py
+```
+
+If you get an error about `wlan0` not being available for scanning, run `ip link show` to find your
+interface's name, then change the `wlan0` keyword on line 11 of `get_wireless_APs.py` to that name.
+
+---
+
+*Built by [Emine Şevval Eş Uzunay](https://www.linkedin.com/in/eminesevvalesuzunay).*
